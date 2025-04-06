@@ -15,3 +15,10 @@ class Task {
     this.category = 'Geral',
   });
 }
+
+//telas que tem barra de ferramentas
+
+/*categories_screen
+task_detail_screen
+add_task_screen
+edit_task_screen */

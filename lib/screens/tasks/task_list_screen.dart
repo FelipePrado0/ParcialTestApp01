@@ -105,36 +105,37 @@ class TaskListScreen extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.edit, color: Color(0xFF7FFFD4)),
               onPressed: () {
-                // Ação para Editar
                 Navigator.pushNamed(context, '/edit-task');
               },
             ),
             IconButton(
               icon: const Icon(Icons.list_alt, color: Color(0xFF7FFFD4)),
               onPressed: () {
-                // Ação para Detalhes
                 Navigator.pushNamed(context, '/task-detail');
               },
             ),
             IconButton(
               icon: const Icon(Icons.add, color: Color(0xFF7FFFD4)),
               onPressed: () {
-                // Ação para Adicionar
                 Navigator.pushNamed(context, '/add-task');
               },
             ),
             IconButton(
               icon: const Icon(Icons.search, color: Color(0xFF7FFFD4)),
               onPressed: () {
-                // Ação para Pesquisar
                 Navigator.pushNamed(context, '/search-task');
               },
             ),
             IconButton(
               icon: const Icon(Icons.folder, color: Color(0xFF7FFFD4)),
               onPressed: () {
-                // Ação para Categorias
                 Navigator.pushNamed(context, '/categories');
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.home, color: Color(0xFF7FFFD4)),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/task-list');
               },
             ),
           ],
