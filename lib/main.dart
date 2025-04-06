@@ -11,6 +11,7 @@ import 'screens/tasks/categories_screen.dart';
 import 'screens/tasks/add_task_screen.dart';
 import 'screens/tasks/edit_task_screen.dart';
 import 'screens/tasks/task_detail_screen.dart';
+import 'screens/about/about_screen.dart'; // Import da nova tela "Sobre"
 
 void main() {
   runApp(
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         '/add-task': (context) => const AddTaskScreen(),
         '/edit-task': (context) => const EditTaskScreen(),
         '/task-detail': (context) => const TaskDetailScreen(),
+        '/about': (context) => const AboutScreen(), // Nova rota para a tela "Sobre"
       },
     );
   }

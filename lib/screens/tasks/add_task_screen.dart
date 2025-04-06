@@ -6,12 +6,26 @@ class AddTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: const Text('Adicionar Tarefa'),
-        backgroundColor: const Color(0xFF65CBA8),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
-      body: const Center(
-        child: Text('Conteúdo da tela de adicionar tarefa'),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFF65CBA8), Color(0xFF7FFFD4), Color(0xFFFF0032)],
+          ),
+        ),
+        child: const Center(
+          child: Text(
+            'Conteúdo da tela de adicionar tarefa',
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+        ),
       ),
       bottomNavigationBar: Container(
         color: const Color(0xFFFF0032),
@@ -32,7 +46,7 @@ class AddTaskScreen extends StatelessWidget {
               },
             ),
             IconButton(
-              iconSize: 36, // Ícone maior para destaque
+              iconSize: 36,
               icon: const Icon(Icons.add, color: Color(0xFF7FFFD4)),
               onPressed: () {
                 Navigator.pushNamed(context, '/add-task');

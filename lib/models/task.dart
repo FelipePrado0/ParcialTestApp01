@@ -16,7 +16,7 @@ class Task {
   });
 }
 
-//telas que tem barra de ferramentas
+//taskbar
 
 /*categories_screen
 task_detail_screen
