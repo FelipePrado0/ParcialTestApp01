@@ -1,12 +1,10 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, depend_on_referenced_packages
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/task.dart';
 import '../../providers/task_provider.dart';
 import '../../providers/auth_provider.dart';
-import 'add_task_screen.dart';
-import 'task_detail_screen.dart';
 
 class TaskListScreen extends StatelessWidget {
   const TaskListScreen({super.key});
@@ -27,39 +25,121 @@ class TaskListScreen extends StatelessWidget {
           },
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text('Bem vindo, $userName', style: TextStyle(fontSize: 20)),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFF65CBA8), Color(0xFF7FFFD4), Color(0xFFFF0032)],
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: tasks.length,
-              itemBuilder: (context, index) => ListTile(
-                title: Text(tasks[index].title),
-                subtitle: Text(tasks[index].description),
-                trailing: Checkbox(
-                  value: tasks[index].isCompleted,
-                  onChanged: (_) => Provider.of<TaskProvider>(context, listen: false)
-                      .toggleTask(tasks[index]),
-                ),
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  '/task-detail',
-                  arguments: tasks[index],
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                'Bem vindo, $userName',
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
             ),
-          ),
-        ],
+            Expanded(
+              child: ListView.builder(
+                itemCount: tasks.length,
+                itemBuilder: (context, index) {
+                  final task = tasks[index];
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFDF5E6),
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.25),
+                            blurRadius: 4,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: ListTile(
+                        title: Text(
+                          task.title,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        subtitle: Text(task.description),
+                        trailing: Checkbox(
+                          value: task.isCompleted,
+                          onChanged: (_) {
+                            Provider.of<TaskProvider>(context, listen: false)
+                                .toggleTask(task);
+                          },
+                        ),
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          '/task-detail',
+                          arguments: task,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.pushNamed(context, '/add-task'),
-        backgroundColor: Colors.blue,
-        child: const Icon(Icons.add),
+      bottomNavigationBar: Container(
+        color: const Color(0xFFFF0032),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.edit, color: Color(0xFF7FFFD4)),
+              onPressed: () {
+                // Ação para Editar
+                Navigator.pushNamed(context, '/edit-task');
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.list_alt, color: Color(0xFF7FFFD4)),
+              onPressed: () {
+                // Ação para Detalhes
+                Navigator.pushNamed(context, '/task-detail');
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.add, color: Color(0xFF7FFFD4)),
+              onPressed: () {
+                // Ação para Adicionar
+                Navigator.pushNamed(context, '/add-task');
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.search, color: Color(0xFF7FFFD4)),
+              onPressed: () {
+                // Ação para Pesquisar
+                Navigator.pushNamed(context, '/search-task');
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.folder, color: Color(0xFF7FFFD4)),
+              onPressed: () {
+                // Ação para Categorias
+                Navigator.pushNamed(context, '/categories');
+              },
+            ),
+          ],
+        ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

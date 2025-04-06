@@ -8,6 +8,7 @@ import 'screens/auth/register_screen.dart';
 import 'screens/auth/reset_password_screen.dart';
 import 'screens/tasks/task_list_screen.dart';
 import 'screens/tasks/categories_screen.dart';
+import 'screens/tasks/add_task_screen.dart';
 
 void main() {
   runApp(
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         '/tasks': (context) => const TaskListScreen(),
         '/reset-password': (context) => ResetPasswordScreen(),
         '/categories': (context) => CategoriesScreen(),
+        '/add-task': (context) => const AddTaskScreen(),
       },
     );
   }

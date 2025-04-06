@@ -3,7 +3,7 @@ import '../models/task.dart';
 
 class TaskProvider with ChangeNotifier {
   final List<Task> _tasks = [];
-  final List<String> _categories = ['Geral', 'Pessoal', 'Trabalho'];
+  List<String> _categories = [];
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   String _selectedCategory = 'Geral';
@@ -35,10 +35,8 @@ class TaskProvider with ChangeNotifier {
   }
 
   void addCategory(String category) {
-    if (!_categories.contains(category)) {
-      _categories.add(category);
-      notifyListeners();
-    }
+    _categories.add(category);
+    notifyListeners();
   }
 
   void removeCategory(String category) {
