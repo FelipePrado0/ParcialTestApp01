@@ -13,11 +13,14 @@ class TaskListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final tasks = Provider.of<TaskProvider>(context).tasks;
     final authProvider = Provider.of<AuthProvider>(context);
-    final userName = authProvider.currentUser?.name ?? 'Usuário';
+    final userName = authProvider.currentUser?.name ?? 'Usuário Padrão';
 
     return Scaffold(
+      extendBodyBehindAppBar: true, // Permite que o corpo da tela fique atrás do AppBar
       appBar: AppBar(
         title: const Text('Tarefas'),
+        backgroundColor: Colors.transparent, // Torna o AppBar transparente
+        elevation: 0, // Remove a sombra do AppBar
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -35,6 +38,7 @@ class TaskListScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
+            const SizedBox(height: kToolbarHeight + 16), // Espaço para o AppBar
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
@@ -115,15 +119,10 @@ class TaskListScreen extends StatelessWidget {
               },
             ),
             IconButton(
+              iconSize: 36, // Ícone maior para destaque
               icon: const Icon(Icons.add, color: Color(0xFF7FFFD4)),
               onPressed: () {
                 Navigator.pushNamed(context, '/add-task');
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.search, color: Color(0xFF7FFFD4)),
-              onPressed: () {
-                Navigator.pushNamed(context, '/search-task');
               },
             ),
             IconButton(
@@ -135,7 +134,7 @@ class TaskListScreen extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.home, color: Color(0xFF7FFFD4)),
               onPressed: () {
-                Navigator.pushReplacementNamed(context, '/task-list');
+                Navigator.pushReplacementNamed(context, '/tasks');
               },
             ),
           ],

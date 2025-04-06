@@ -3,7 +3,7 @@ import '../models/task.dart';
 
 class TaskProvider with ChangeNotifier {
   final List<Task> _tasks = [];
-  List<String> _categories = [];
+  final List<String> _categories = [];
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   String _selectedCategory = 'Geral';
